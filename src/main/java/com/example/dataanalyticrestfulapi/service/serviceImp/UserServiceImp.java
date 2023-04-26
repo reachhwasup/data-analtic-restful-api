@@ -31,7 +31,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public int createNewUser(User user) {
-        return 0;
+        return userRepository.createNewUser(user);
     }
 
     @Override
