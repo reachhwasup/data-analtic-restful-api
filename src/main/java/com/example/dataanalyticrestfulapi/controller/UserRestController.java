@@ -52,4 +52,28 @@ public class UserRestController {
             return Response.<List<UserAccount>>exception().setMessage("Exception failed to retrieved all user accounts");
         }
     }
+
+    @PutMapping("/{id}")
+    public Response<User> updateUser(@PathVariable int id, @RequestBody User user){
+        try{
+                userService.updateUser(user, id);
+            return Response.<User>updateSuccess().setPayload(user).setMessage("Successfully to update a user with id ");
+
+
+        } catch (Exception exception){
+
+            return Response.<User>exception().setSuccess(false).setMessage("Fail to update a user with id "+id);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public Response<User> deleteUser(@PathVariable int id){
+        try {
+                userService.removeUser(id);
+                return Response.<User>deleteSuccess().setMessage("Successfully deleted a user with id "+id);
+
+        } catch (Exception e){
+            return Response.<User>exception().setMessage("Fail to delete a user with id ");
+        }
+    }
 }
