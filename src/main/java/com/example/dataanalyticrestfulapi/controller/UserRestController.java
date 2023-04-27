@@ -1,7 +1,10 @@
 package com.example.dataanalyticrestfulapi.controller;
 
 import com.example.dataanalyticrestfulapi.model.User;
+import com.example.dataanalyticrestfulapi.model.UserAccount;
+import com.example.dataanalyticrestfulapi.model.response.AccountResponse;
 import com.example.dataanalyticrestfulapi.service.UserService;
+import com.example.dataanalyticrestfulapi.util.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +40,16 @@ public class UserRestController {
 
 
         return null;
+    }
+
+    @GetMapping("/user-accounts")
+    public Response<List<UserAccount>> getAllUserAccounts(){
+        try{
+            List<UserAccount> data= userService.getAllUserAccounts();
+            return Response.<List<UserAccount>>ok().setPayload(data).setMessage("Successfully!!");
+
+        }catch (Exception e){
+            return Response.<List<UserAccount>>exception().setMessage("Exception failed to retrieved all user accounts");
+        }
     }
 }
