@@ -50,12 +50,21 @@ public class Response<T> {
 
         return response;
     }
+    public static <T> Response<T> badRequest(){
+        Response<T> response = new Response<>();
+        response.setStatus(Status.BAD_REQUEST);
+        response.setSuccess(false);
+
+        return response;
+
+    }
     public static <T> Response <T> notFound(){
         Response<T> response = new Response<>();
         response.setStatus(Status.NOT_FOUND);
 
         return response;
-    }    public static <T> Response <T> exception(){
+    }
+    public static <T> Response <T> exception(){
         Response<T> response = new Response<>();
         response.setStatus(Status.EXCEPTION);
 

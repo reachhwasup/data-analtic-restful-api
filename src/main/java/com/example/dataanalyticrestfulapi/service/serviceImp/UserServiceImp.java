@@ -2,6 +2,7 @@ package com.example.dataanalyticrestfulapi.service.serviceImp;
 
 import com.example.dataanalyticrestfulapi.model.User;
 import com.example.dataanalyticrestfulapi.model.UserAccount;
+import com.example.dataanalyticrestfulapi.model.request.UserRequest;
 import com.example.dataanalyticrestfulapi.repository.UserRepository;
 import com.example.dataanalyticrestfulapi.service.UserService;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,10 @@ public class UserServiceImp implements UserService {
         return userRepository.findUserByID(id);
     }
 
+
+
     @Override
-    public int createNewUser(User user) {
+    public int createNewUser(UserRequest user) {
         return userRepository.createNewUser(user);
     }
 
