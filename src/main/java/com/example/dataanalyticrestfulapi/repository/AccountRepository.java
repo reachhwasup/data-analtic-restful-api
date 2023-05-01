@@ -30,4 +30,6 @@ public interface AccountRepository {
     @Select("select * from accounttype_tb where id=#{account_type}")
     AccountType getAccountTypeByID(int account_type);
 
+    String getProfile();
+
 }
