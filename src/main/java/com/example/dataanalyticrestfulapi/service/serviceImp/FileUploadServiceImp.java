@@ -28,8 +28,6 @@ public class FileUploadServiceImp implements FileUploadService {
             }
             String[] fileParts = filename.split("\\.");
             filename = UUID.randomUUID() +"." + fileParts[1];
-            // asdlfkasfd-asdfkasdjflasd-sdkfj.png
-            //resolved path
 
             Path resolvedPath = fileLocationStorage.resolve(filename);
             Files.copy(file.getInputStream(), resolvedPath, StandardCopyOption.REPLACE_EXISTING);

@@ -4,6 +4,7 @@ import com.example.dataanalyticrestfulapi.model.Account;
 import com.example.dataanalyticrestfulapi.model.User;
 import com.example.dataanalyticrestfulapi.model.UserAccount;
 import com.example.dataanalyticrestfulapi.model.request.UserRequest;
+import com.example.dataanalyticrestfulapi.repository.provider.UserProvider;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +14,19 @@ import java.util.List;
 @Mapper@Repository
 public interface UserRepository {
     @Result(column = "id",property = "userId")
-    @Select("select * from users_tb")
-    List<User> allUser ();
+//    @Select("select * from users_tb")
+    @SelectProvider(type = UserProvider.class,method = "getAllUsers")
+    List<User> allUser (String filterName);
     List<User> findUserByUsername(String username);
+
     @Select("insert into users_tb ( username, gender, address)\n" +
             "values (#{user.username},#{user.gender},#{user.address}) returning id")
     int createNewUser(@Param("user") UserRequest user);
+
+//    @InsertProvider(type = UserProvider.class,method = "createNewUser")
+//    @Options(useGeneratedKeys = true,keyColumn = "id",keyProperty = "userId")
+//    int createNewUser(@Param("u") UserRequest user);
+
 
 
     @Result(column = "id",property = "userId")

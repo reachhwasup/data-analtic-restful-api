@@ -5,6 +5,7 @@ import com.example.dataanalyticrestfulapi.model.UserAccount;
 import com.example.dataanalyticrestfulapi.model.request.UserRequest;
 import com.example.dataanalyticrestfulapi.service.UserService;
 import com.example.dataanalyticrestfulapi.util.Response;
+import com.github.pagehelper.PageInfo;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class UserRestController {
         this.userService = userService;
     }
     @GetMapping("/all-user")
-    public Response<List<User>> allUsers(){
+    public Response<PageInfo<User>> allUsers(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "5") int size,@RequestParam(defaultValue = "")String username){
         try{
-              List<User> response = userService.allUsers();
-              return Response.<List<User>>ok().setPayload(response).setMessage("Successfully");
+              PageInfo<User> response = userService.allUsers(page, size,username);
+              return Response.<PageInfo<User>>ok().setPayload(response).setMessage("Successfully");
         }catch (Exception e){
-            return Response.<List<User>>exception().setMessage("Failed");
+            return Response.<PageInfo<User>>exception().setMessage("Failed");
         }
     }
     @GetMapping("/{id}")
