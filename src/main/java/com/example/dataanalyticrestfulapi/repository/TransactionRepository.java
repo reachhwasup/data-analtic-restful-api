@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface TransactionRepository {
     @Results({
-        @Result(property= "senderID",column = "sender_account_id"),
-        @Result(property = "receiverID",column = "receiver_account_Id"),
+        @Result(property= "senderId",column = "sender_account_id"),
+        @Result(property = "receiverId",column = "receiver_account_Id"),
         @Result(property = "transferAt",column = "transfer_at")
     })
     @SelectProvider(type = TransactionProvider.class,method = "getAllTransactionSQL")

@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Transaction {
     private int id;
-    private int senderID;
-    private int receiverID;
+    private int senderId;
+    private int receiverId;
     private int amount;
     private String remark;
     private LocalDate transferAt;

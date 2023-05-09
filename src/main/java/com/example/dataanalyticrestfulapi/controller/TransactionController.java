@@ -39,7 +39,7 @@ public class TransactionController {
                 return Response.<Transaction>badRequest().setMessage("Can not create new transaction!!!").setSuccess(false);
             }
         }catch (Exception exception){
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
             return Response.<Transaction>exception().setSuccess(false).setMessage("Fail to create new transaction!");
         }
     }
@@ -47,7 +47,7 @@ public class TransactionController {
     @PutMapping("/{id}")
     public Response<Transaction> updateTransaction(@RequestBody Transaction transaction, @PathVariable int id){
         try {
-            transaction.setId(id);
+//            transaction.setId(id);
             int affectedRow = transactionService.updateTransaction(transaction, id);
             if(affectedRow>0){
                 return Response.<Transaction>updateSuccess().setPayload(transaction).setMessage("Transaction successfully updated!!!");
